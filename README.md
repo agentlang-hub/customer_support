@@ -16,6 +16,29 @@ export OPENAI_API_KEY="FIXME"
 docker compose up
 ```
 
+### Running the app without Docker
+
+This app uses [PGvector](https://github.com/pgvector/pgvector) for document
+search. You would need to have PostgreSQL database with PGvector extension
+configured to run the app locally. You may need to initialize the database
+with the SQL scripts under `sql` directory.
+
+Having PostgreSQL/PGvector running, you would need to have installed
+[Agentlang CLI](https://github.com/agentlang-ai/agentlang.cli) to run
+Agentlang apps. Please note that the CLI has its own pre-requisites.
+
+```shell
+export OPENAI_API_KEY="FIXME"
+export PGVECTOR_DB_HOST="FIXME"
+export PGVECTOR_DB_PORT="FIXME"
+export PGVECTOR_DB_NAME="FIXME"
+export PGVECTOR_DB_USERNAME="FIXME"
+export PGVECTOR_DB_PASSWORD="FIXME"
+agent run
+```
+
+### Asking customer support questions
+
 Once the app is up, ask questions to the app as follows:
 
 ```shell
