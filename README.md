@@ -39,7 +39,7 @@ agent run
 
 ### Asking customer support questions
 
-Once the app is up, ask questions to the app as follows:
+Once the app is up, in another terminal ask questions to the app as follows:
 
 ```shell
 curl -X POST localhost:8080/api/Customer.Support.Core/CameraStore \
