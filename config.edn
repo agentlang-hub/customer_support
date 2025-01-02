@@ -1,0 +1,16 @@
+{:service {:port 8080}
+ :graphql {:enabled false
+           :enabled? false}
+ ;; :store {:type :postgres}
+ ;; :authentication {:service :cognito
+ ;;                  :superuser-email #$ FRACTL_SUPERUSER_EMAIL}
+ ;; :rbac-enabled true
+ :embeddings {:vectordb :pgvector
+              :config {:llm-provider "llm01"
+                       :host #$ [PGVECTOR_DB_HOST "localhost"]
+                       :port #$ [PGVECTOR_DB_PORT 5432]
+                       :dbname #$ [PGVECTOR_DB_NAME "postgres"]
+                       :user #$ [PGVECTOR_DB_USERNAME "postgres"]
+                       :password #$ [PGVECTOR_DB_PASSWORD "postgres"]}}
+ :agents {:technical-support {:Documents ["file://./docs/abc.md" "file://./docs/xyz.md"]}
+          :price-enquiry {:Documents ["file://./docs/abc_prices.txt" "file://./docs/xyz_prices.txt"]}}}

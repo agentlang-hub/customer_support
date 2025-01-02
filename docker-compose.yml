@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  pgvector:
+    image: ankane/pgvector
+    environment:
+      POSTGRES_DB: agentlang
+      POSTGRES_USER: agentlang
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - ${PWD}/sql:/docker-entrypoint-initdb.d
+  application:
+    image: agentlang/agentlang.cli:latest
+    environment:
+      PGVECTOR_DB_HOST: pgvector
+      PGVECTOR_DB_PORT: 5432
+      PGVECTOR_DB_NAME: agentlang
+      PGVECTOR_DB_USERNAME: agentlang
+      PGVECTOR_DB_PASSWORD: password
+      CLONE_CMD: run
+      CLONE_URI: ""
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+    volumes:
+      - ./:/agentlang
+    ports:
+      - 8080:8080
+    depends_on:
+      - pgvector
+
